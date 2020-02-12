@@ -21,7 +21,7 @@ You can select the default styles from a drop-down menu in the CKEditor toolbar.
 
 The configuration files might already be in the templates folder, please have a look inside.
 
-### question:
+### Question:
 
 How can I customize the CKEditor for WBCE?
 
