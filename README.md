@@ -1,7 +1,7 @@
 # CKEditor Standard Edition
 
 ## The popular editor for WBCE CMS
-Contains CKEditor 4.13.1 standard package and some other plugins, CKEditor allows content editing and can be integrated into modules.
+Contains CKEditor 4.14.0 standard package and some other plugins, CKEditor allows content editing and can be integrated into modules.
 
 ***CKEditor 4.12.0.1 and higher require WBCE 1.4 !***
 
@@ -20,16 +20,6 @@ The default look of the WYSIWYG texttarea and preview.
 You can select the default styles from a drop-down menu in the CKEditor toolbar.
 
 The configuration files might already be in the templates folder, please have a look inside.
-
-### Question:
-
-How can I customize the CKEditor for WBCE?
-
-#### Answer:
-
-To customize, copy the files from _yourInstallation/modules/ckeditor/ckeditor/ into the folder _yourInstallation/templates/_yourDefaultTemplate/, your changes only apply to your template.
-Or create a wb_config folder in _yourInstallation/templates/ and copy the files into this folder, all changes apply to all templates.
-You can also see the old wb_config files from the [archive branch](https://github.com/Colinax/CKEditor/tree/archive/wb_config).
 
 ### Question:
 
@@ -56,3 +46,13 @@ editor.styles.js
 3) _yourInstallation/templates/_yourDefaultTemplate/editor/editor.styles.js
 4) _yourInstallation/templates/wb_config/editor.styles.js
 5) _yourInstallation/modules/ckeditor/ckeditor/styles.js
+
+### Question:
+
+How can I customize the CKEditor for WBCE?
+
+#### Answer:
+
+To customize, copy the files from _yourInstallation/modules/ckeditor/ckeditor/ into the folder _yourInstallation/templates/_yourDefaultTemplate/, your changes only apply to your template.
+Or create a wb_config folder in _yourInstallation/templates/ and copy the files into this folder, all changes apply to all templates.
+If youe need coding examples see the wb_config files in the [archive branch](https://github.com/Colinax/CKEditor/tree/archive/wb_config).
