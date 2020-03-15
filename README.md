@@ -29,24 +29,24 @@ What is the search order for these configuration files?
 
 1) Will be called first, if available, 2) Is next, and so on!
 
-Do not remove or delete the default files and there content!
+* Do not remove or delete the default files and there content!
 
 editor.css
-`
+
 1) _yourInstallation/templates/_yourDefaultTemplate/editor.css
 2) _yourInstallation/templates/_yourDefaultTemplate/css/editor.css
 3) _yourInstallation/templates/_yourDefaultTemplate/editor/editor.css
 4) _yourInstallation/templates/wb_config/editor.css
-5) _yourInstallation/modules/ckeditor/ckeditor/contents.css (default)
-`
+5) _yourInstallation/modules/ckeditor/ckeditor/contents.css (default*)
+
 editor.styles.js
-`
+
 1) _yourInstallation/templates/_yourDefaultTemplate/editor.styles.js
 2) _yourInstallation/templates/_yourDefaultTemplate/js/editor.styles.js
 3) _yourInstallation/templates/_yourDefaultTemplate/editor/editor.styles.js
 4) _yourInstallation/templates/wb_config/editor.styles.js
-5) _yourInstallation/modules/ckeditor/ckeditor/styles.js (default)
-`
+5) _yourInstallation/modules/ckeditor/ckeditor/styles.js (default*)
+
 ### 3. Question:
 
 How can I customize the CKEditor for WBCE?
