@@ -35,8 +35,9 @@
  				};
  			}
  			this.setValueOf('info', 'txtName', dropletName);
- 			if (isListed)
+ 			if (isListed) {
  				this.setValueOf('info', 'droplet-edit', '[[' + dropletText + ']]');
+ 			}
  		},
 
  		contents: [{

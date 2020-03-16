@@ -39,10 +39,13 @@
                         newFake.replace(this._.selectedElement);
 
                         // Selecting fake element for IE. (#11377)
-                        if (CKEDITOR.env.ie)
+                        if (CKEDITOR.env.ie) {
                             editor.getSelection().selectElement(newFake);
-                    } else
+                        }
+                    } else {
                         this._.selectedElement.setAttributes(attributes);
+                    }
+
                 } else {
                     var sel = editor.getSelection(),
                         range = sel && sel.getRanges()[0];
@@ -52,8 +55,9 @@
                         var anchor = createFakeAnchor(editor, attributes);
                         range.insertNode(anchor);
                     } else {
-                        if (CKEDITOR.env.ie && CKEDITOR.env.version < 9)
+                        if (CKEDITOR.env.ie && CKEDITOR.env.version < 9) {
                             attributes['class'] = 'cke_anchor';
+                        }
 
                         // Apply style.
                         var style = new CKEDITOR.style({
@@ -82,8 +86,9 @@
                     loadElements.call(this, linkElement);
                     !fakeSelected && sel.selectElement(linkElement);
 
-                    if (fullySelected)
+                    if (fullySelected) {
                         this._.selectedElement = fullySelected;
+                    }
                 }
 
                 this.getContentElement('info', 'txtName').focus();

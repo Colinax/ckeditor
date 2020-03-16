@@ -15,8 +15,9 @@
 				targetName = dialog.getContentElement('target', 'linkTargetName'),
 				value = this.getValue();
 
-			if (!popupFeatures || !targetName)
+			if (!popupFeatures || !targetName) {
 				return;
+			}
 
 			popupFeatures = popupFeatures.getElement();
 			popupFeatures.hide();
@@ -49,38 +50,45 @@
 				uploadInitiallyHidden = uploadTab && uploadTab.hidden;
 
 			if (typeValue == 'url') {
-				if (editor.config.linkShowTargetTab)
+				if (editor.config.linkShowTargetTab) {
 					dialog.showPage('target');
-				if (!uploadInitiallyHidden)
+				}
+				if (!uploadInitiallyHidden) {
 					dialog.showPage('upload');
+				}
 			} else if (typeValue == 'wblink') {
-				if (editor.config.linkShowTargetTab)
+				if (editor.config.linkShowTargetTab) {
 					dialog.showPage('target');
+				}
 				dialog.hidePage('upload');
 			} else {
 				dialog.hidePage('target');
-				if (!uploadInitiallyHidden)
+				if (!uploadInitiallyHidden) {
 					dialog.hidePage('upload');
+				}
 			}
 
 			for (var i = 0; i < partIds.length; i++) {
 				var element = dialog.getContentElement('info', partIds[i]);
-				if (!element)
+				if (!element) {
 					continue;
+				}
 
 				element = element.getElement().getParent().getParent();
-				if (partIds[i] == typeValue + 'Options')
+				if (partIds[i] == typeValue + 'Options') {
 					element.show();
-				else
+				} else {
 					element.hide();
+				}
 			}
 
 			dialog.layout();
 		};
 
 		var setupParams = function (page, data) {
-			if (data[page])
+			if (data[page]) {
 				this.setValue(data[page][this.id] || '');
+			}
 		};
 
 		var setupPopupParams = function (data) {
@@ -92,8 +100,9 @@
 		};
 
 		var commitParams = function (page, data) {
-			if (!data[page])
+			if (!data[page]) {
 				data[page] = {};
+			}
 
 			data[page][this.id] = this.getValue() || '';
 		};
@@ -131,8 +140,9 @@
 							],
 							onChange: linkTypeChanged,
 							setup: function (data) {
-								if (data.type)
+								if (data.type) {
 									this.setValue(data.type || 'url');
+								}
 							},
 							commit: function (data) {
 								data.type = this.getValue();
@@ -177,14 +187,16 @@
 											this.setValue(selPage);
 										},
 										commit: function (data) {
-											if (!data.wblink)
+											if (!data.wblink) {
 												data.wblink = {};
+											}
 											data.wblink.url = this.getValue();
 										}
 									}],
 									setup: function (data) {
-										if (!this.getDialog().getContentElement('info', 'linkType'))
+										if (!this.getDialog().getContentElement('info', 'linkType')) {
 											this.getElement().show();
+										}
 									}
 								},
 
@@ -197,14 +209,16 @@
 										items: new Array(new Array(linkLang.noNews, '')),
 										setup: function (data) {},
 										commit: function (data) {
-											if (!data.newslink)
+											if (!data.newslink) {
 												data.newslink = {};
+											}
 											data.newslink.url = this.getValue();
 										}
 									}],
 									setup: function (data) {
-										if (!this.getDialog().getContentElement('info', 'linkType'))
+										if (!this.getDialog().getContentElement('info', 'linkType')) {
 											this.getElement().show();
+										}
 									}
 								}
 
@@ -231,12 +245,14 @@
 												[linkLang.other, '']
 											],
 											setup: function (data) {
-												if (data.url)
+												if (data.url) {
 													this.setValue(data.url.protocol || '');
+												}
 											},
 											commit: function (data) {
-												if (!data.url)
+												if (!data.url) {
 													data.url = {};
+												}
 
 												data.url.protocol = this.getValue();
 											}
@@ -266,30 +282,34 @@
 												this.allowOnChange = true;
 											},
 											onChange: function () {
-												if (this.allowOnChange) // Dont't call on dialog load.
+												if (this.allowOnChange) { // Dont't call on dialog load.
 													this.onKeyUp();
+												}
 											},
 											validate: function () {
 												var dialog = this.getDialog();
 
-												if (dialog.getContentElement('info', 'linkType') && dialog.getValueOf('info', 'linkType') != 'url')
+												if (dialog.getContentElement('info', 'linkType') && dialog.getValueOf('info', 'linkType') != 'url') {
 													return true;
+												}
 
 												if (!editor.config.linkJavaScriptLinksAllowed && (/javascript\:/).test(this.getValue())) {
 													alert(commonLang.invalidValue);
 													return false;
 												}
 
-												if (this.getDialog().fakeObj) // Edit Anchor.
+												if (this.getDialog().fakeObj) { // Edit Anchor.
 													return true;
+												}
 
 												var func = CKEDITOR.dialog.validate.notEmpty(linkLang.noUrl);
 												return func.apply(this);
 											},
 											setup: function (data) {
 												this.allowOnChange = false;
-												if (data.url)
+												if (data.url) {
 													this.setValue(data.url.url);
+												}
 												this.allowOnChange = true;
 
 											},
@@ -298,8 +318,9 @@
 												// to carry all the operations #4724
 												this.onChange();
 
-												if (!data.url)
+												if (!data.url) {
 													data.url = {};
+												}
 
 												data.url.url = this.getValue();
 												this.allowOnChange = false;
@@ -307,8 +328,9 @@
 										}
 									],
 									setup: function (data) {
-										if (!this.getDialog().getContentElement('info', 'linkType'))
+										if (!this.getDialog().getContentElement('info', 'linkType')) {
 											this.getElement().show();
+										}
 									}
 								},
 								{
@@ -352,21 +374,25 @@
 
 													if (anchors) {
 														for (var i = 0; i < anchors.length; i++) {
-															if (anchors[i].name)
+															if (anchors[i].name) {
 																this.add(anchors[i].name);
+															}
 														}
 													}
 
-													if (data.anchor)
+													if (data.anchor) {
 														this.setValue(data.anchor.name);
+													}
 
 													var linkType = this.getDialog().getContentElement('info', 'linkType');
-													if (linkType && linkType.getValue() == 'email')
+													if (linkType && linkType.getValue() == 'email') {
 														this.focus();
+													}
 												},
 												commit: function (data) {
-													if (!data.anchor)
+													if (!data.anchor) {
 														data.anchor = {};
+													}
 
 													data.anchor.name = this.getValue();
 												}
@@ -386,17 +412,20 @@
 
 													if (anchors) {
 														for (var i = 0; i < anchors.length; i++) {
-															if (anchors[i].id)
+															if (anchors[i].id) {
 																this.add(anchors[i].id);
+															}
 														}
 													}
 
-													if (data.anchor)
+													if (data.anchor) {
 														this.setValue(data.anchor.id);
+													}
 												},
 												commit: function (data) {
-													if (!data.anchor)
+													if (!data.anchor) {
 														data.anchor = {};
+													}
 
 													data.anchor.id = this.getValue();
 												}
@@ -420,8 +449,9 @@
 								}
 							],
 							setup: function (data) {
-								if (!this.getDialog().getContentElement('info', 'linkType'))
+								if (!this.getDialog().getContentElement('info', 'linkType')) {
 									this.getElement().hide();
+								}
 							}
 						},
 						{
@@ -436,23 +466,27 @@
 									validate: function () {
 										var dialog = this.getDialog();
 
-										if (!dialog.getContentElement('info', 'linkType') || dialog.getValueOf('info', 'linkType') != 'email')
+										if (!dialog.getContentElement('info', 'linkType') || dialog.getValueOf('info', 'linkType') != 'email') {
 											return true;
+										}
 
 										var func = CKEDITOR.dialog.validate.notEmpty(linkLang.noEmail);
 										return func.apply(this);
 									},
 									setup: function (data) {
-										if (data.email)
+										if (data.email) {
 											this.setValue(data.email.address);
+										}
 
 										var linkType = this.getDialog().getContentElement('info', 'linkType');
-										if (linkType && linkType.getValue() == 'email')
+										if (linkType && linkType.getValue() == 'email') {
 											this.select();
+										}
 									},
 									commit: function (data) {
-										if (!data.email)
+										if (!data.email) {
 											data.email = {};
+										}
 
 										data.email.address = this.getValue();
 									}
@@ -462,12 +496,14 @@
 									id: 'emailSubject',
 									label: linkLang.emailSubject,
 									setup: function (data) {
-										if (data.email)
+										if (data.email) {
 											this.setValue(data.email.subject);
+										}
 									},
 									commit: function (data) {
-										if (!data.email)
+										if (!data.email) {
 											data.email = {};
+										}
 
 										data.email.subject = this.getValue();
 									}
@@ -479,20 +515,23 @@
 									rows: 3,
 									'default': '',
 									setup: function (data) {
-										if (data.email)
+										if (data.email) {
 											this.setValue(data.email.body);
+										}
 									},
 									commit: function (data) {
-										if (!data.email)
+										if (!data.email) {
 											data.email = {};
+										}
 
 										data.email.body = this.getValue();
 									}
 								}
 							],
 							setup: function (data) {
-								if (!this.getDialog().getContentElement('info', 'linkType'))
+								if (!this.getDialog().getContentElement('info', 'linkType')) {
 									this.getElement().hide();
+								}
 							}
 						}
 					]
@@ -522,13 +561,15 @@
 									],
 									onChange: targetChanged,
 									setup: function (data) {
-										if (data.target)
+										if (data.target) {
 											this.setValue(data.target.type || 'notSet');
+										}
 										targetChanged.call(this);
 									},
 									commit: function (data) {
-										if (!data.target)
+										if (!data.target) {
 											data.target = {};
+										}
 
 										data.target.type = this.getValue();
 									}
@@ -539,12 +580,14 @@
 									label: linkLang.targetFrameName,
 									'default': '',
 									setup: function (data) {
-										if (data.target)
+										if (data.target) {
 											this.setValue(data.target.name);
+										}
 									},
 									commit: function (data) {
-										if (!data.target)
+										if (!data.target) {
 											data.target = {};
+										}
 
 										data.target.name = this.getValue().replace(/\W/gi, '');
 									}
@@ -870,8 +913,9 @@
 				if ((element = plugin.getSelectedLink(editor)) && element.hasAttribute('href')) {
 					// Don't change selection if some element is already selected.
 					// For example - don't destroy fake selection.
-					if (!selection.getSelectedElement())
+					if (!selection.getSelectedElement()) {
 						selection.selectElement(element);
+					}
 				} else {
 					element = null;
 				}
@@ -936,11 +980,13 @@
 				}
 			},
 			onLoad: function () {
-				if (!editor.config.linkShowAdvancedTab)
+				if (!editor.config.linkShowAdvancedTab) {
 					this.hidePage('advanced'); //Hide Advanded tab.
+				}
 
-				if (!editor.config.linkShowTargetTab)
+				if (!editor.config.linkShowTargetTab) {
 					this.hidePage('target'); //Hide Target tab.
+				}
 			},
 			// Inital focus on 'url' field if link is of type URL.
 			onFocus: function () {

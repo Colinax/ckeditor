@@ -36,8 +36,9 @@
 		// Remove a domain part: www.mytest.example.com => mytest.example.com => example.com ...
 		d = d.replace(/.*?(?:\.|$)/, '');
 
-		if (d.length == 0)
+		if (d.length == 0) {
 			break; // It was not able to detect the domain.
+		}
 
 		try {
 			document.domain = d;
@@ -67,8 +68,9 @@ function StringBuilder(value) {
 }
 
 StringBuilder.prototype.Append = function (value) {
-	if (value)
+	if (value) {
 		this._Strings.push(value);
+	}
 }
 
 StringBuilder.prototype.ToString = function () {

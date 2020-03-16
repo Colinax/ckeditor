@@ -48,10 +48,12 @@
             var allowed = 'a[!href]',
                 required = 'a[href]';
 
-            if (CKEDITOR.dialog.isTabEnabled(editor, 'wblink', 'advanced'))
+            if (CKEDITOR.dialog.isTabEnabled(editor, 'wblink', 'advanced')) {
                 allowed = allowed.replace(']', ',accesskey,charset,dir,id,lang,name,rel,tabindex,title,type]{*}(*)');
-            if (CKEDITOR.dialog.isTabEnabled(editor, 'wblink', 'target'))
+            }
+            if (CKEDITOR.dialog.isTabEnabled(editor, 'wblink', 'target')) {
                 allowed = allowed.replace(']', ',target,onclick]');
+            }
 
             // Add the link and unlink buttons.
             editor.addCommand('wblink', new CKEDITOR.dialogCommand('wblink', {
@@ -106,8 +108,9 @@
             // If event was cancelled, link passed in event data will not be selected.
             editor.on('doubleclick', function (evt) {
                 // Make sure both links and anchors are selected (#11822).
-                if (evt.data.link)
+                if (evt.data.link) {
                     editor.getSelection().selectElement(evt.data.link);
+                }
             }, null, null, 20);
 
             // If the "menu" plugin is loaded, register the menu items.
@@ -146,24 +149,29 @@
             // If the "contextmenu" plugin is loaded, register the listeners.
             if (editor.contextMenu) {
                 editor.contextMenu.addListener(function (element, selection) {
-                    if (!element || element.isReadOnly())
+                    if (!element || element.isReadOnly()) {
                         return null;
+                    }
 
                     var anchor = CKEDITOR.plugins.wblink.tryRestoreFakeAnchor(editor, element);
 
-                    if (!anchor && !(anchor = CKEDITOR.plugins.wblink.getSelectedLink(editor)))
+                    if (!anchor && !(anchor = CKEDITOR.plugins.wblink.getSelectedLink(editor))) {
                         return null;
+                    }
 
                     var menu = {};
 
-                    if (anchor.getAttribute('href') && anchor.getChildCount())
+                    if (anchor.getAttribute('href') && anchor.getChildCount()) {
                         menu = {
                             wblink: CKEDITOR.TRISTATE_OFF,
                             unlink: CKEDITOR.TRISTATE_OFF
                         };
+                    }
 
-                    if (anchor && anchor.hasAttribute('name'))
+
+                    if (anchor && anchor.hasAttribute('name')) {
                         menu.anchor = menu.removeAnchor = CKEDITOR.TRISTATE_OFF;
+                    }
 
                     return menu;
                 });
@@ -177,11 +185,13 @@
             editor.dataProcessor.dataFilter.addRules({
                 elements: {
                     a: function (element) {
-                        if (!element.attributes.name)
+                        if (!element.attributes.name) {
                             return null;
+                        }
 
-                        if (!element.children.length)
+                        if (!element.children.length) {
                             return editor.createFakeParserElement(element, 'cke_anchor', 'anchor');
+                        }
 
                         return null;
                     }
@@ -316,8 +326,9 @@
         getSelectedLink: function (editor) {
             var selection = editor.getSelection();
             var selectedElement = selection.getSelectedElement();
-            if (selectedElement && selectedElement.is('a'))
+            if (selectedElement && selectedElement.is('a')) {
                 return selectedElement;
+            }
 
             var range = selection.getRanges()[0];
 
@@ -412,8 +423,9 @@
         tryRestoreFakeAnchor: function (editor, element) {
             if (element && element.data('cke-real-element-type') && element.data('cke-real-element-type') == 'anchor') {
                 var link = editor.restoreRealElement(element);
-                if (link.data('cke-saved-name'))
+                if (link.data('cke-saved-name')) {
                     return link;
+                }
             }
         },
 
@@ -441,9 +453,7 @@
                             String.fromCharCode.apply(String, protectedAddress.split(',')) +
                             (rest && unescapeSingleQuote(rest));
                     });
-                }
-                // Protected email link as function call.
-                else if (emailProtection) {
+                } else if (emailProtection) { // Protected email link as function call.
                     href.replace(functionCallProtectedEmailLinkRegex, function (match, funcName, funcArgs) {
                         if (funcName == compiledProtectionFunction.name) {
                             retval.type = 'email';
@@ -471,9 +481,7 @@
                     retval.type = 'anchor';
                     retval.anchor = {};
                     retval.anchor.name = retval.anchor.id = anchorMatch[1];
-                }
-                // Protected email link as encoded string.
-                else if ((emailMatch = href.match(emailRegex))) {
+                } else if ((emailMatch = href.match(emailRegex))) { // Protected email link as encoded string.
                     var subjectMatch = href.match(emailSubjectRegex),
                         bodyMatch = href.match(emailBodyRegex);
 
@@ -482,16 +490,16 @@
                     email.address = emailMatch[1];
                     subjectMatch && (email.subject = decodeURIComponent(subjectMatch[1]));
                     bodyMatch && (email.body = decodeURIComponent(bodyMatch[1]));
+                } else if (href && (urlMatch = href.match(urlRegex))) { // urlRegex matches empty strings, so need to check for href as well.
+                    retval.type = 'url';
+                    if (urlMatch[2].search(/\[wblink/) === 0) retval.type = 'wblink'; {
+                        retval.url = {};
+                        retval.url.protocol = urlMatch[1];
+                        retval.url.url = urlMatch[2];
+                    }
+                } else {
+                    retval.type = 'url';
                 }
-                // urlRegex matches empty strings, so need to check for href as well.
-                else if (href && (urlMatch = href.match(urlRegex))) {
-                    retval.type = 'url';
-                    if (urlMatch[2].search(/\[wblink/) === 0) retval.type = 'wblink';
-                    retval.url = {};
-                    retval.url.protocol = urlMatch[1];
-                    retval.url.url = urlMatch[2];
-                } else
-                    retval.type = 'url';
             }
 
             // Load target and popup settings.
@@ -519,8 +527,9 @@
                                     left: 1
                                 }))
                                 retval.target[featureMatch[1]] = true;
-                            else if (isFinite(featureMatch[2]))
+                            else if (isFinite(featureMatch[2])) {
                                 retval.target[featureMatch[1]] = featureMatch[2];
+                            }
                         }
                     }
                 } else {
@@ -535,17 +544,20 @@
                 for (var a in advAttrNames) {
                     var val = element.getAttribute(a);
 
-                    if (val)
+                    if (val) {
                         advanced[advAttrNames[a]] = val;
+                    }
                 }
 
                 var advName = element.data('cke-saved-name') || advanced.advName;
 
-                if (advName)
+                if (advName) {
                     advanced.advName = advName;
+                }
 
-                if (!CKEDITOR.tools.isEmpty(advanced))
+                if (!CKEDITOR.tools.isEmpty(advanced)) {
                     retval.advanced = advanced;
+                }
             }
 
             return retval;
@@ -661,8 +673,9 @@
                                 featureList.push(featureName + '=' + data.target[featureName]);
                         };
 
-                    for (var i = 0; i < featureLength; i++)
+                    for (var i = 0; i < featureLength; i++) {
                         featureList[i] = featureList[i] + (data.target[featureList[i]] ? '=yes' : '=no');
+                    }
 
                     addFeature('width');
                     addFeature('left');
@@ -681,17 +694,20 @@
                 for (var a in advAttrNames) {
                     var val = data.advanced[advAttrNames[a]];
 
-                    if (val)
+                    if (val) {
                         set[a] = val;
+                    }
                 }
 
-                if (set.name)
+                if (set.name) {
                     set['data-cke-saved-name'] = set.name;
+                }
             }
 
             // Browser need the "href" fro copy/paste link to work. (#6641)
-            if (set['data-cke-saved-href'])
+            if (set['data-cke-saved-href']) {
                 set.href = set['data-cke-saved-href'];
+            }
 
             var removed = CKEDITOR.tools.extend({
                 target: 1,
@@ -701,8 +717,9 @@
             }, advAttrNames);
 
             // Remove all attributes which are not currently set.
-            for (var s in set)
+            for (var s in set) {
                 delete removed[s];
+            }
 
             return {
                 set: set,
@@ -732,10 +749,11 @@
 
             var element = path.lastElement && path.lastElement.getAscendant('a', true);
 
-            if (element && element.getName() == 'a' && element.getAttribute('href') && element.getChildCount())
+            if (element && element.getName() == 'a' && element.getAttribute('href') && element.getChildCount()) {
                 this.setState(CKEDITOR.TRISTATE_OFF);
-            else
+            } else {
                 this.setState(CKEDITOR.TRISTATE_DISABLED);
+            }
         },
 
         contextSensitive: 1,
@@ -749,9 +767,9 @@
             var sel = editor.getSelection(),
                 bms = sel.createBookmarks(),
                 anchor;
-            if (sel && (anchor = sel.getSelectedElement()) && (!anchor.getChildCount() ? CKEDITOR.plugins.wblink.tryRestoreFakeAnchor(editor, anchor) : anchor.is('a')))
+            if (sel && (anchor = sel.getSelectedElement()) && (!anchor.getChildCount() ? CKEDITOR.plugins.wblink.tryRestoreFakeAnchor(editor, anchor) : anchor.is('a'))) {
                 anchor.remove(1);
-            else {
+            } else {
                 if ((anchor = CKEDITOR.plugins.wblink.getSelectedLink(editor))) {
                     if (anchor.hasAttribute('href')) {
                         anchor.removeAttributes({
@@ -759,8 +777,9 @@
                             'data-cke-saved-name': 1
                         });
                         anchor.removeClass('cke_anchor');
-                    } else
+                    } else {
                         anchor.remove(1);
+                    }
                 }
             }
             sel.selectBookmarks(bms);

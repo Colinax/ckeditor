@@ -92,19 +92,18 @@ FCKXml.prototype.LoadUrl = function (urlToCall, asyncFunctionPointer) {
 	oXmlHttp.send(null);
 
 	if (!bAsync) {
-		if (oXmlHttp.status == 200 || oXmlHttp.status == 304)
+		if (oXmlHttp.status == 200 || oXmlHttp.status == 304) {
 			this.DOMDocument = oXmlHttp.responseXML;
-		else {
+		} else {
 			alert('XML request error: ' + oXmlHttp.statusText + ' (' + oXmlHttp.status + ')');
 		}
 	}
 }
 
 FCKXml.prototype.SelectNodes = function (xpath) {
-	if (navigator.userAgent.indexOf('MSIE') >= 0 || !!navigator.userAgent.match(/Trident.*rv.*11\./)) // IE
+	if (navigator.userAgent.indexOf('MSIE') >= 0 || !!navigator.userAgent.match(/Trident.*rv.*11\./)) { // IE
 		return this.DOMDocument.selectNodes(xpath);
-	else // Gecko
-	{
+	} else { // Gecko
 		var aNodeArray = new Array();
 
 		var xPathResult = this.DOMDocument.evaluate(xpath, this.DOMDocument,
@@ -121,16 +120,16 @@ FCKXml.prototype.SelectNodes = function (xpath) {
 }
 
 FCKXml.prototype.SelectSingleNode = function (xpath) {
-	if (navigator.userAgent.indexOf('MSIE') >= 0 || !!navigator.userAgent.match(/Trident.*rv.*11\./)) // IE
+	if (navigator.userAgent.indexOf('MSIE') >= 0 || !!navigator.userAgent.match(/Trident.*rv.*11\./)) { // IE
 		return this.DOMDocument.selectSingleNode(xpath);
-	else // Gecko
-	{
+	} else { // Gecko
 		var xPathResult = this.DOMDocument.evaluate(xpath, this.DOMDocument,
 			this.DOMDocument.createNSResolver(this.DOMDocument.documentElement), 9, null);
 
-		if (xPathResult && xPathResult.singleNodeValue)
+		if (xPathResult && xPathResult.singleNodeValue) {
 			return xPathResult.singleNodeValue;
-		else
+		} else {
 			return null;
+		}
 	}
 }
