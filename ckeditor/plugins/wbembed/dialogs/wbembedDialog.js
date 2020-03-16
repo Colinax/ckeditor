@@ -59,15 +59,15 @@ CKEDITOR.dialog.add('wbembedDialog', function (editor) {
             if (url.length > 1) {
                 var resizetype = dialog.getValueOf('tab-basic', 'resizeType');
                 if (resizetype == "custom") {
-                    var iframe = new CKEDITOR.dom.element.createFromHtml('<iframe src="' + url + '" allowfullscreen></iframe>');
+                    var iframe = new CKEDITOR.dom.element.createFromHtml('<iframe loading="lazy" src="' + url + '" allowfullscreen></iframe>');
                     div_container.append(iframe);
                     editor.insertElement(div_container);
                 } else if (resizetype == 'noresize') {
-                    var iframe = new CKEDITOR.dom.element.createFromHtml('<iframe width="560" height="349" src="' + url + '" allowfullscreen></iframe>');
+                    var iframe = new CKEDITOR.dom.element.createFromHtml('<iframe loading="lazy" width="560" height="349" src="' + url + '" allowfullscreen></iframe>');
                     div_container.append(iframe);
                     editor.insertElement(div_container);
                 } else {
-                    var iframe = new CKEDITOR.dom.element.createFromHtml('<iframe src="' + url + '" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen></iframe>');
+                    var iframe = new CKEDITOR.dom.element.createFromHtml('<iframe loading="lazy" src="' + url + '" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen></iframe>');
                     div_container.setAttribute("style", "left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.2493%;");
                     div_container.append(iframe);
                     editor.insertElement(div_container);
