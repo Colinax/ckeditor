@@ -32,7 +32,8 @@ if (true === $debug) {
  * @param    string    Optional the width, default "100%" of given space.
  * @param    string    Optional the height of the editor - default is '250px'
  */
-function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '350px', $toolbar = false) {
+function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '350px', $toolbar = false)
+{
     global $database;
     $oApp = isset($GLOBALS['admin']) ? $GLOBALS['admin'] : $GLOBALS['wb'];
     
