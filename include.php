@@ -126,7 +126,7 @@ function show_wysiwyg_editor($name, $id, $content, $width = '100%', $height = '3
      */
     $ckeditor->config['extraPlugins']    = 'ckawesome,codemirror,textselection,wbdroplets,wbembed,wblink,wbsave,wbshybutton,autolink,colorbutton,copyformatting,font,indentblock,justify,lineutils,panelbutton,textmatch,widgetselection';
     $ckeditor->config['removePlugins']   = 'wsc,save';
-    $ckeditor->config['removeButtons']   = 'Font,link';
+    $ckeditor->config['removeButtons']   = 'Font';
     $ckeditor->config['fontawesomePath'] = WB_URL . '/include/font-awesome/css/font-awesome.min.css';
 
     if ($toolbar) {
