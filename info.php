@@ -12,7 +12,7 @@
 
 $module_directory = 'ckeditor';
 $module_name = 'CKEditor';
-$module_function = 'WYSIWYG';
+$module_function = 'WYSIWYG,snippet';
 $module_version = '4.16.0';
 $module_platform = '1.4.0';
 $module_author = 'diverse, cwsoft, Norhei, Colinax';
