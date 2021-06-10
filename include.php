@@ -119,9 +119,9 @@ if (defined('WB_FRONTEND') && WB_FRONTEND == true) {
          * Get the config file
          */
         $ckeditor->resolve_path(
-            'customConfig',
             $tplPath.'/wb_config/wb_ckconfig.js',
-            $ModPath.'/ckeditor/config.js'
+            $ModPath.'/ckeditor/config.js',
+            'customConfig'
         );
 
         /**
