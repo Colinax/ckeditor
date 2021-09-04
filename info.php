@@ -13,9 +13,9 @@
 $module_directory = 'ckeditordev';
 $module_name = 'CKEditor Developer Edition';
 $module_function = 'WYSIWYG,snippet';
-$module_version = '4.16.1';
+$module_version = '4.16.2';
 $module_platform = '1.5.0';
 $module_author = 'diverse, cwsoft, Norhei, Colinax';
 $module_license = 'GPL, LGPL and MPL';
-$module_description = 'includes CKEditor 4.16.1 Full Package and some other Plugins, CKE allows editing content and can be integrated in frontend and backend modules.';
+$module_description = 'includes CKEditor 4.16.2 Full Package and some other Plugins, CKE allows editing content and can be integrated in frontend and backend modules.';
 $module_home = 'https://www.wbce.org';
