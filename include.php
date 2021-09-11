@@ -18,15 +18,10 @@ if (count(get_included_files()) == 1) {
 }
 
 if (defined('WB_FRONTEND') && WB_FRONTEND == true) {
-    // do nothing
+    /**
+     * do nothing
+     */
 } else {
-    $debug = false;
-
-    if (true === $debug) {
-        ini_set('display_errors', 1);
-        error_reporting(E_ALL);
-    }
-
     /**
      * Function called by parent, default by the wysiwyg-module
      * @param string The name of the textarea to watch
@@ -81,6 +76,16 @@ if (defined('WB_FRONTEND') && WB_FRONTEND == true) {
         }
         $templateFolder = ($temp == "") ? DEFAULT_TEMPLATE : $temp;
         $ckeditor->setTemplatePath($templateFolder);
+
+        /**
+         * Set user language
+         */
+        $ckeditor->config['language'] = strtolower(LANGUAGE);
+
+        /**
+         * The language to be used if config.language is empty and it's not possible to localize the editor to the user language.
+         */
+        $ckeditor->config['defaultLanguage'] = strtolower(DEFAULT_LANGUAGE);
 
         /**
          * Looking for the styles
