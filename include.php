@@ -139,7 +139,7 @@ if (defined('WB_FRONTEND') && WB_FRONTEND == true) {
          * This version contains the image2 plugin, to enable it, add simply image2 to the extraPlugins list
          */
         $ckeditor->config['extraPlugins']    = 'ckawesome,codemirror,textselection,wbdroplets,wbembed,wblink,wbsave,wbshybutton,autolink,lineutils,textmatch,widgetselection,syntaxhighlight';
-        $ckeditor->config['removePlugins']   = 'wsc,save,iframe,exportpdf,flash,pastetext,pastefromword';
+        $ckeditor->config['removePlugins']   = 'wsc,save,iframe,exportpdf,pastetext,pastefromword';
         $ckeditor->config['removeButtons']   = 'Font,Cut,Copy,Paste';
         $ckeditor->config['fontawesomePath'] = WB_URL . '/include/font-awesome/css/font-awesome.min.css';
 
