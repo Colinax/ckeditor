@@ -1,5 +1,5 @@
 <?php
-header('Content-type: application/javascript');
+header('Content-type: application/javascript; charset=utf-8');
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-Control: post-check=0, pre-check=0, false');
 header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
@@ -78,7 +78,7 @@ echo $InternPagesSelectBox .= " );\n";
 echo $PagesTitleSelectBox .= " );\n";
 
 //generate news lists
-$wblink_allowed_chars = "/[^ a-zA-Z0-9_äöüÄÖÜß!\"§$%&\/\(\)\[\]=\{\}\?\*#~+-;:,\.\'\`@€|]/";
+$wblink_allowed_chars = "/[^ \u0400-\u04FFa-zA-Z0-9_äöüÄÖÜß!\"§$%&\/\(\)\[\]=\{\}\?\*#~+-;:,\.\'\`@€|]/";
 $NewsItemsSelectBox = "var NewsItemsSelectBox = new Array();";
 $ModuleList = "var ModuleList = new Array();";
 
@@ -99,7 +99,7 @@ while ($section = $newsImgSections->fetchRow()) {
     $ModuleList .= "ModuleList[".$section['page_id']."] = 'NewsWithImages';";
     $NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."] = new Array();";
     while ($newsImg && $item = $newsImg->fetchRow()) {
-        $item['title'] = preg_replace($wblink_allowed_chars, "", $item['title']);
+        //$item['title'] = preg_replace($wblink_allowed_chars, "", $item['title']);
         $NewsItemsSelectBox .= "NewsItemsSelectBox[".$section['page_id']."][NewsItemsSelectBox[".$section['page_id']."].length] = new Array('".(addslashes($item['title']))."', '".WB_URL.PAGES_DIRECTORY.(addslashes($item['link'])).PAGE_EXTENSION."');";
     }
 }
