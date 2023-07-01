@@ -32,12 +32,12 @@ class CKEditor
     /**
      * The version of %CKEditor.
      */
-    public const version = '4.22.1';
+    const version = '4.22.1';
 
     /**
      * A constant string unique for each release of %CKEditor.
      */
-    public const timestamp = 'N5UC';
+    const timestamp = 'N5UC';
 
     /**
      * A string indicating the creation date of %CKEditor.
