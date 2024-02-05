@@ -28,7 +28,7 @@ What is the search order for these configuration files?
 
 1) Will be called first, if available, 2) Is next, and so on!
 
-***Do not remove or delete the default files and there content!***
+***Do not remove or delete the default files and their content!***
 
 editor.css
 ```
@@ -54,6 +54,6 @@ How can I customize the CKEditor for WBCE?
 
 #### Answer:
 
-To customize, copy the the default files into the folder _yourInstallation/templates/_yourDefaultTemplate/ and rename it, your changes only apply to your template.
-Or create a wb_config folder in _yourInstallation/templates/ and copy the default files into this folder and rename it, all changes apply to all templates.
-If youe need code examples or how these files schould look like, see example files [here](https://github.com/Colinax/CKEditor/tree/developer/wb_config).
+To customize, copy the the default files into the folder _yourInstallation/templates/_yourDefaultTemplate/ and rename them according to the list above. Your changes only apply to your current default template.
+Or create a wb_config folder in _yourInstallation/templates/ and copy the default files into this folder and rename them accordingly, all changes will then apply to all templates.
+If youe need code examples or how these files should look like, see example files here: https://github.com/WBCE/CKEditor/tree/developer/wb_config
