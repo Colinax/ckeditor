@@ -57,16 +57,3 @@ How can I customize the CKEditor for WBCE?
 To customize, copy the the default files into the folder _yourInstallation/templates/_yourDefaultTemplate/ and rename them according to the list above. Your changes only apply to your current default template.
 Or create a wb_config folder in _yourInstallation/templates/ and copy the default files into this folder and rename them accordingly, all changes will then apply to all templates.
 If youe need code examples or how these files should look like, see example files here: https://github.com/WBCE/CKEditor/tree/developer/wb_config
-
-### 4. Question:
-
-How can I remove the update notification? Is the version 4.22.1 unsafe?
-
-#### Answer:
-
- When using the current version 4.22.1 of the developer edition with a custom wb_config.js, make sure to add the line
-```
-config.versionCheck = false;
-```
-to the file to avoid a unnecessary update reminder. (At CKEditor, they want you to change to the commercial CKE 4.24.0-LTS or CKE5, that's the main reason for this window. As far as we know the so-called security flaws refer to plugins/parts of the editor which are not part of the CKE package for WBCE CMS.) 
-
