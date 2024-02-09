@@ -94,4 +94,4 @@ How can I remove the update notification? Is the version 4.22.1 unsafe?
 ```
 config.versionCheck = false;
 ```
-to the file to avoid a unnecessary update reminder. (At CKEditor, they want you to change to the commercial CKE 4.24.0-LTS or CKE5, that's the main reason for this window. As far as we know the so-called security flaws refer to plugins/parts of the editor which are not part of the CKE package for WBCE CMS.) 
+to the file to avoid a unnecessary update reminder. (At CKEditor, they want you to change to the commercial CKE 4.24.0-LTS or CKE5, that's probably the main reason for this window. As far as we know the security flaws refer to plugins/parts of the editor which are not part of the CKE package for WBCE CMS.) 
